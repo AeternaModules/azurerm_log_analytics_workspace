@@ -28,13 +28,13 @@ EOT
     location                                = string
     name                                    = string
     resource_group_name                     = string
-    allow_resource_only_permissions         = optional(bool, true)
+    allow_resource_only_permissions         = optional(bool) # Default: true
     cmk_for_query_forced                    = optional(bool)
-    daily_quota_gb                          = optional(number, -1)
+    daily_quota_gb                          = optional(number) # Default: -1
     data_collection_rule_id                 = optional(string)
     immediate_data_purge_on_30_days_enabled = optional(bool)
-    internet_ingestion_enabled              = optional(bool, true)
-    internet_query_enabled                  = optional(bool, true)
+    internet_ingestion_enabled              = optional(bool) # Default: true
+    internet_query_enabled                  = optional(bool) # Default: true
     local_authentication_disabled           = optional(bool)
     local_authentication_enabled            = optional(bool)
     reservation_capacity_in_gb_per_day      = optional(number)
