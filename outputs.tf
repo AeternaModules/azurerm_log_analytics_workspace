@@ -1,3 +1,7 @@
+output "log_analytics_workspaces_id" {
+  description = "Map of id values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
+  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.id }
+}
 output "log_analytics_workspaces_allow_resource_only_permissions" {
   description = "Map of allow_resource_only_permissions values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
   value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.allow_resource_only_permissions }
