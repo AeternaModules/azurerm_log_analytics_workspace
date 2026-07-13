@@ -28,13 +28,13 @@ EOT
     location                                = string
     name                                    = string
     resource_group_name                     = string
-    allow_resource_only_permissions         = optional(bool) # Default: true
+    allow_resource_only_permissions         = optional(bool)
     cmk_for_query_forced                    = optional(bool)
-    daily_quota_gb                          = optional(number) # Default: -1
+    daily_quota_gb                          = optional(number)
     data_collection_rule_id                 = optional(string)
     immediate_data_purge_on_30_days_enabled = optional(bool)
-    internet_ingestion_enabled              = optional(bool) # Default: true
-    internet_query_enabled                  = optional(bool) # Default: true
+    internet_ingestion_enabled              = optional(bool)
+    internet_query_enabled                  = optional(bool)
     local_authentication_disabled           = optional(bool)
     local_authentication_enabled            = optional(bool)
     reservation_capacity_in_gb_per_day      = optional(number)
@@ -46,14 +46,6 @@ EOT
       type         = string
     }))
   }))
-  validation {
-    condition = alltrue([
-      for k, v in var.log_analytics_workspaces : (
-        v.retention_in_days == null || (v.retention_in_days >= 30 && v.retention_in_days <= 730)
-      )
-    ])
-    error_message = "must be between 30 and 730"
-  }
   # --- Unconfirmed validation candidates, derived from azurerm_log_analytics_workspace's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
   # or a path that crosses a list-typed block (needs its own for_each wrapping).
@@ -88,6 +80,9 @@ EOT
   #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
   # path: reservation_capacity_in_gb_per_day
   #   source:    validation.IntInSlice(...) - no translation rule yet, add one
+  # path: retention_in_days
+  #   condition: value >= 30 && value <= 730
+  #   message:   must be between 30 and 730
   # path: daily_quota_gb
   #   source:    validation.FloatAtLeast(...) - no translation rule yet, add one
   # path: data_collection_rule_id
