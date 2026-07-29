@@ -9,9 +9,8 @@ resource "azurerm_log_analytics_workspace" "log_analytics_workspaces" {
   daily_quota_gb                          = each.value.daily_quota_gb
   data_collection_rule_id                 = each.value.data_collection_rule_id
   immediate_data_purge_on_30_days_enabled = each.value.immediate_data_purge_on_30_days_enabled
-  internet_ingestion_enabled              = each.value.internet_ingestion_enabled
-  internet_query_enabled                  = each.value.internet_query_enabled
-  local_authentication_disabled           = each.value.local_authentication_disabled
+  internet_ingestion_access_type          = each.value.internet_ingestion_access_type
+  internet_query_access_type              = each.value.internet_query_access_type
   local_authentication_enabled            = each.value.local_authentication_enabled
   reservation_capacity_in_gb_per_day      = each.value.reservation_capacity_in_gb_per_day
   retention_in_days                       = each.value.retention_in_days

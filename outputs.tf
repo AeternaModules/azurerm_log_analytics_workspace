@@ -26,17 +26,13 @@ output "log_analytics_workspaces_immediate_data_purge_on_30_days_enabled" {
   description = "Map of immediate_data_purge_on_30_days_enabled values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
   value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.immediate_data_purge_on_30_days_enabled if v.immediate_data_purge_on_30_days_enabled != null }
 }
-output "log_analytics_workspaces_internet_ingestion_enabled" {
-  description = "Map of internet_ingestion_enabled values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
-  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.internet_ingestion_enabled if v.internet_ingestion_enabled != null }
+output "log_analytics_workspaces_internet_ingestion_access_type" {
+  description = "Map of internet_ingestion_access_type values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
+  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.internet_ingestion_access_type if v.internet_ingestion_access_type != null && length(v.internet_ingestion_access_type) > 0 }
 }
-output "log_analytics_workspaces_internet_query_enabled" {
-  description = "Map of internet_query_enabled values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
-  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.internet_query_enabled if v.internet_query_enabled != null }
-}
-output "log_analytics_workspaces_local_authentication_disabled" {
-  description = "Map of local_authentication_disabled values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
-  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.local_authentication_disabled if v.local_authentication_disabled != null }
+output "log_analytics_workspaces_internet_query_access_type" {
+  description = "Map of internet_query_access_type values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
+  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.internet_query_access_type if v.internet_query_access_type != null && length(v.internet_query_access_type) > 0 }
 }
 output "log_analytics_workspaces_local_authentication_enabled" {
   description = "Map of local_authentication_enabled values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
