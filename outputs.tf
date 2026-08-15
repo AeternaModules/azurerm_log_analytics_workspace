@@ -20,7 +20,7 @@ output "log_analytics_workspaces_data_collection_rule_id" {
 }
 output "log_analytics_workspaces_identity" {
   description = "Map of identity values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
-  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_log_analytics_workspace.log_analytics_workspaces : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "log_analytics_workspaces_immediate_data_purge_on_30_days_enabled" {
   description = "Map of immediate_data_purge_on_30_days_enabled values across all log_analytics_workspaces, keyed the same as var.log_analytics_workspaces"
